@@ -58,24 +58,24 @@ public extension RWMutex {
     public func syncW<T>(_ execute: () throws -> T) rethrows -> T {
         wLock()
         defer { unlock() }
-        return execute()
+        return try execute()
     }
     
     public func trySyncW<T>(_ execute: () throws -> T) rethrows -> T? {
         guard tryWLock() else { return nil }
         defer { unlock() }
-        return execute()
+        return try execute()
     }
     
     public func syncR<T>(_ execute: () throws -> T) rethrows -> T {
         rLock()
         defer { unlock() }
-        return execute()
+        return try execute()
     }
     
     public func trySyncR<T>(_ execute: () throws -> T) rethrows -> T? {
         guard tryRLock() else { return nil }
         defer { unlock() }
-        return execute()
+        return try execute()
     }
 }

@@ -30,11 +30,11 @@ public class MutexPthreadRW: RWMutex {
     }
     
     public func tryRLock() -> Bool {
-        return pthread_rwlock_tryrdlock(&mutex)
+        return pthread_rwlock_tryrdlock(&mutex) == 0
     }
     
     public func tryWLock() -> Bool {
-        return pthread_rwlock_trywrlock(&mutex)
+        return pthread_rwlock_trywrlock(&mutex) == 0
     }
     
     public func rLock() {
